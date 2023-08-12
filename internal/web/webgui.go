@@ -6,9 +6,9 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/aceberg/AppTemplate/internal/check"
-	"github.com/aceberg/AppTemplate/internal/conf"
-	// "github.com/aceberg/AppTemplate/internal/yaml"
+	"github.com/aceberg/booktr/internal/check"
+	"github.com/aceberg/booktr/internal/conf"
+	// "github.com/aceberg/booktr/internal/yaml"
 )
 
 // Gui - start web server

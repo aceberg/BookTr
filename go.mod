@@ -1,4 +1,4 @@
-module github.com/aceberg/AppTemplate
+module github.com/aceberg/booktr
 
 go 1.20
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PKGNAME=AppTemplate
+PKGNAME=booktr
 PKGDIR=/opt/$PKGNAME
 
 cd cmd/$PKGNAME/ && CGO_ENABLED=0 go build -o ../../$PKGNAME .

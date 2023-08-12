@@ -5,7 +5,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/aceberg/AppTemplate/internal/models"
+	"github.com/aceberg/booktr/internal/models"
 )
 
 func indexHandler(c *gin.Context) {

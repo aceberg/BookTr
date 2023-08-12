@@ -1,12 +1,12 @@
 [Unit]
-Description=AppTemplate
-Documentation=https://github.com/aceberg/AppTemplate
+Description=booktr
+Documentation=https://github.com/aceberg/booktr
 After=network-online.target
 Wants=network-online.target
 
 [Service]
 User=%i
-ExecStart=/usr/bin/AppTemplate -c /home/%i/.config/AppTemplate/config.yaml
+ExecStart=/usr/bin/booktr -c /home/%i/.config/booktr/config.yaml
 Restart=on-failure
 
 [Install]

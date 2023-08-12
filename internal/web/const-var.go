@@ -3,7 +3,7 @@ package web
 import (
 	// "embed"
 
-	"github.com/aceberg/AppTemplate/internal/models"
+	"github.com/aceberg/booktr/internal/models"
 )
 
 var (

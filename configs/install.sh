@@ -1,6 +1,6 @@
 #!/bin/sh
 
-PKGNAME=AppTemplate
+PKGNAME=booktr
 
 cp $PKGNAME /usr/bin/
 cp $PKGNAME.service /lib/systemd/system/
