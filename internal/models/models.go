@@ -8,13 +8,20 @@ type Conf struct {
 	Color    string
 	Icon     string
 	ConfPath string
-	YamlPath string
 	NodePath string
+}
+
+// Translate - text to translate
+type Translate struct {
+	Left  string
+	Right string
+	From  string
+	To    string
 }
 
 // GuiData - web gui data
 type GuiData struct {
-	Config  Conf
-	Themes  []string
-	Example string
+	Config Conf
+	Themes []string
+	Tr     Translate
 }

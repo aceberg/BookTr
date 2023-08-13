@@ -2,27 +2,21 @@ package web
 
 import (
 	"log"
-	// "net/http"
 
 	"github.com/gin-gonic/gin"
 
 	"github.com/aceberg/booktr/internal/check"
 	"github.com/aceberg/booktr/internal/conf"
-	// "github.com/aceberg/booktr/internal/yaml"
 )
 
 // Gui - start web server
-func Gui(confPath, yamlPath, nodePath string) {
+func Gui(confPath, nodePath string) {
 
 	AppConfig = conf.Get(confPath)
 	AppConfig.ConfPath = confPath
 	AppConfig.NodePath = ""
-	AppConfig.YamlPath = yamlPath
 	AppConfig.Icon = Icon
 	log.Println("INFO: starting web gui with config", AppConfig.ConfPath)
-
-	// AllLinks = yaml.Read(AppConfig.YamlPath)
-	// log.Println("ALL:", AllLinks)
 
 	address := AppConfig.Host + ":" + AppConfig.Port
 
@@ -33,7 +27,10 @@ func Gui(confPath, yamlPath, nodePath string) {
 	gin.SetMode(gin.ReleaseMode)
 	router := gin.Default()
 	router.LoadHTMLGlob(TemplPath + "/*.html")
-	router.GET("/", indexHandler) // index.go
+
+	router.GET("/", indexHandler)         // index.go
+	router.POST("/", indexHandler)        // index.go
+	router.POST("/tr/", translateHandler) // translate.go
 
 	err := router.Run(address)
 	check.IfError(err)

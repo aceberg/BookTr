@@ -1,0 +1,51 @@
+{{ define "translate.html" }}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $(document).ready (function () {        
+
+        $("#left").scroll(function () {
+        $("#right").scrollTop($("#left").scrollTop());
+        });
+        
+        $("#right").scroll(function () {
+        $("#left").scrollTop($("#right").scrollTop());
+        });
+    });
+</script>
+<style>
+    #left {
+    width: 45%;
+    height: 500px;
+    display:inline-block;
+    border: 3px;
+    word-wrap:break-word;
+    overflow-y:scroll;
+    }
+    /* p {
+    width:400px;
+    height:400px;
+    } */
+    #right {
+    width: 45%;
+    height: 500px;
+    display:inline-block;
+    border: 3px;
+    word-wrap:break-word;
+    overflow-y:scroll;
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <br>
+        <div class="row">
+            <div id="left">
+                <p>{{ .Tr.Left }}</p>
+            </div>
+            <div id="right">
+                <p>{{ .Tr.Right }}</p>
+            </div>
+        </div>
+    </div>
+{{ template "footer.html" }}
+{{ end }}

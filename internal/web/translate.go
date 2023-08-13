@@ -9,7 +9,7 @@ import (
 	"github.com/aceberg/booktr/internal/models"
 )
 
-func indexHandler(c *gin.Context) {
+func translateHandler(c *gin.Context) {
 	var guiData models.GuiData
 	guiData.Config = AppConfig
 
@@ -24,5 +24,5 @@ func indexHandler(c *gin.Context) {
 	}
 
 	c.HTML(http.StatusOK, "header.html", guiData)
-	c.HTML(http.StatusOK, "index.html", guiData)
+	c.HTML(http.StatusOK, "translate.html", guiData)
 }
