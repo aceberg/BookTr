@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	"github.com/aceberg/booktr/internal/models"
+	"github.com/aceberg/booktr/internal/translate"
 )
 
 func translateHandler(w http.ResponseWriter, r *http.Request) {
@@ -17,7 +18,7 @@ func translateHandler(w http.ResponseWriter, r *http.Request) {
 		// log.Println("TR:", tr)
 
 		guiData.Tr.Left = tr
-		guiData.Tr.Right = tr
+		guiData.Tr.Right = translate.Libre(tr, "en", "ru")
 	}
 
 	execTemplate(w, "translate", guiData)

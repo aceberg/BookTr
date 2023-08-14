@@ -2,7 +2,10 @@ module github.com/aceberg/booktr
 
 go 1.20
 
-require github.com/spf13/viper v1.16.0
+require (
+	github.com/snakesel/libretranslate v0.0.2
+	github.com/spf13/viper v1.16.0
+)
 
 require (
 	github.com/fsnotify/fsnotify v1.6.0 // indirect
