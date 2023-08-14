@@ -1,20 +1,19 @@
-{{ define "index.html" }}
+{{ define "index" }}
 </head>
 <body>
     <div class="container">
         <br>
         <div class="row text-center">
-            <div class="col">
+            <div class="col-3"></div>
+            <div class="col-6 text-center">
                 <form action="/tr/" method="post">
                     <textarea name="tr" class="form-control" style="width: 100%;" rows="20" wrap="soft">{{ .Tr.Left }}</textarea>
                     <br>
                     <button type="submit" class="btn btn-primary">Translate</button>
                 </form>
             </div>
-            <div class="col">
-                <textarea class="form-control" style="width: 100%;" rows="20" wrap="soft">{{ .Tr.Right }}</textarea>
-            </div>
+            <div class="col-3"></div>
         </div>
     </div>
-{{ template "footer.html" }}
+{{ template "footer" }}
 {{ end }}

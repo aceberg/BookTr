@@ -1,28 +1,24 @@
 package web
 
 import (
-	"log"
+	// "log"
 	"net/http"
-
-	"github.com/gin-gonic/gin"
 
 	"github.com/aceberg/booktr/internal/models"
 )
 
-func translateHandler(c *gin.Context) {
+func translateHandler(w http.ResponseWriter, r *http.Request) {
 	var guiData models.GuiData
 	guiData.Config = AppConfig
 
-	_ = c.Request.ParseForm()
-	tr := c.PostForm("tr")
+	tr := r.FormValue("tr")
 
 	if tr != "" {
-		log.Println("TR:", tr)
+		// log.Println("TR:", tr)
 
 		guiData.Tr.Left = tr
 		guiData.Tr.Right = tr
 	}
 
-	c.HTML(http.StatusOK, "header.html", guiData)
-	c.HTML(http.StatusOK, "translate.html", guiData)
+	execTemplate(w, "translate", guiData)
 }

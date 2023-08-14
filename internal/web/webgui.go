@@ -2,8 +2,7 @@ package web
 
 import (
 	"log"
-
-	"github.com/gin-gonic/gin"
+	"net/http"
 
 	"github.com/aceberg/booktr/internal/check"
 	"github.com/aceberg/booktr/internal/conf"
@@ -24,14 +23,11 @@ func Gui(confPath, nodePath string) {
 	log.Printf("Web GUI at http://%s", address)
 	log.Println("=================================== ")
 
-	gin.SetMode(gin.ReleaseMode)
-	router := gin.Default()
-	router.LoadHTMLGlob(TemplPath + "/*.html")
+	http.HandleFunc("/", indexHandler)                  // index.go
+	http.HandleFunc("/config/", configHandler)          // config.go
+	http.HandleFunc("/config_save/", saveConfigHandler) // config.go
+	http.HandleFunc("/tr/", translateHandler)           // translate.go
 
-	router.GET("/", indexHandler)         // index.go
-	router.POST("/", indexHandler)        // index.go
-	router.POST("/tr/", translateHandler) // translate.go
-
-	err := router.Run(address)
+	err := http.ListenAndServe(address, nil)
 	check.IfError(err)
 }

@@ -1,4 +1,4 @@
-{{ define "translate.html" }}
+{{ define "translate" }}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
     $(document).ready (function () {        
@@ -14,24 +14,26 @@
 </script>
 <style>
     #left {
-    width: 45%;
-    height: 500px;
-    display:inline-block;
-    border: 3px;
-    word-wrap:break-word;
-    overflow-y:scroll;
+        width: 47%;
+        /* height: 500px; */
+        display:inline-block;
+        border: 3px;
+        word-wrap:break-word;
+        overflow-y:scroll;
+        white-space: pre-wrap;
     }
-    /* p {
-    width:400px;
-    height:400px;
-    } */
+    #middle {
+        width: 5%;
+        display:inline-block;
+    }
     #right {
-    width: 45%;
-    height: 500px;
-    display:inline-block;
-    border: 3px;
-    word-wrap:break-word;
-    overflow-y:scroll;
+        width: 47%;
+        /* height: 500px; */
+        display:inline-block;
+        border: 3px;
+        word-wrap:break-word;
+        overflow-y:scroll;
+        white-space: pre-wrap;
     }
 </style>
 </head>
@@ -39,13 +41,16 @@
     <div class="container">
         <br>
         <div class="row">
-            <div id="left">
-                <p>{{ .Tr.Left }}</p>
-            </div>
-            <div id="right">
-                <p>{{ .Tr.Right }}</p>
+            <div class="col">
+                <div id="left">
+                    <p>{{ .Tr.Left }}</p>
+                </div>
+                <div id="middle"></div>
+                <div id="right">
+                    <p>{{ .Tr.Right }}</p>
+                </div>
             </div>
         </div>
     </div>
-{{ template "footer.html" }}
+{{ template "footer" }}
 {{ end }}
