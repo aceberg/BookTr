@@ -26,6 +26,7 @@ func Gui(confPath, nodePath string) {
 	http.HandleFunc("/", indexHandler)                  // index.go
 	http.HandleFunc("/config/", configHandler)          // config.go
 	http.HandleFunc("/config_save/", saveConfigHandler) // config.go
+	http.HandleFunc("/next/", nextHandler)              // next.go
 	http.HandleFunc("/tr/", translateHandler)           // translate.go
 
 	err := http.ListenAndServe(address, nil)

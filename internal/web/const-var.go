@@ -9,6 +9,9 @@ import (
 var (
 	// AppConfig - config for Web Gui
 	AppConfig models.Conf
+
+	// AllTr - translate
+	AllTr []models.Translate
 )
 
 // TemplHTML - html templates

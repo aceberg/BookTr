@@ -13,10 +13,9 @@ type Conf struct {
 
 // Translate - text to translate
 type Translate struct {
+	ID    int
 	Left  string
 	Right string
-	From  string
-	To    string
 }
 
 // GuiData - web gui data
