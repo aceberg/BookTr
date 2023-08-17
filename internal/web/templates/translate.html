@@ -4,17 +4,26 @@
     $(document).ready (function () {        
 
         var i = 0;
-            $("button").click(function(){
-                $.getJSON("/next/?id=" + i, function(result){
-                    
-                    if (result["id"] != "") {
-                        $("#left").append(result["left"]);
-                        $("#right").append(result["right"]);
-                        $("#middle").append(result["id"]);
-                        i = i + 1;
-                    }
-                });
+        $("button").click(function(){
+                
+            $.getJSON("/next/?id=" + i, function(result){
+                
+                if (result["id"] === i.toString()) {
+                    console.log("ID not empty:"+ result["id"]+"; i = "+i)
+                    $("#left").append('<span class="hhh" id="'+i+'">'+result["left"]+'</span>');
+                    $("#right").append('<span class="hhh" id="'+i+'">'+result["right"]+'</span>');
+
+                    i = i + 1;
+                }
             });
+        });
+
+        $('#hhh').mouseover(function(){
+            $(this).addClass('hover');
+        });
+        $('#hhh').mouseout(function(){
+            $(this).removeClass('hover');
+        });
     });
 </script>
 <style>
@@ -40,6 +49,10 @@
         overflow-y:scroll;
         white-space: pre-wrap;
     }
+    .hover
+    {
+        background-color:chartreuse;
+    } 
 </style>
 </head>
 <body>

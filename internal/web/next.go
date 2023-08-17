@@ -19,7 +19,7 @@ func nextHandler(w http.ResponseWriter, r *http.Request) {
 
 	for _, tr := range AllTr {
 		if tr.ID == id {
-			resp["ID"] = strconv.Itoa(tr.ID)
+			resp["id"] = strconv.Itoa(tr.ID)
 			resp["left"] = tr.Left
 			resp["right"] = tr.Right
 		}

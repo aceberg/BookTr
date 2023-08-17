@@ -12,7 +12,7 @@ import (
 func startTr(text, from, to string) {
 	var tr models.Translate
 
-	allStrings := strings.SplitAfter(text, ".")
+	allStrings := strings.SplitAfter(text, ". ")
 
 	for i := range allStrings {
 
