@@ -9,20 +9,41 @@
             $.getJSON("/next/?id=" + i, function(result){
                 
                 if (result["id"] === i.toString()) {
-                    console.log("ID not empty:"+ result["id"]+"; i = "+i)
-                    $("#left").append('<span class="hhh" id="'+i+'">'+result["left"]+'</span>');
-                    $("#right").append('<span class="hhh" id="'+i+'">'+result["right"]+'</span>');
+                    // console.log("ID not empty:"+ result["id"]+"; i = "+i)
+                    $("#left").append('<span class="cl'+i+'">'+result["left"]+'</span>');
+                    $("#right").append('<span class="cl'+i+'">'+result["right"]+'</span>');
 
                     i = i + 1;
                 }
             });
         });
 
-        $('#hhh').mouseover(function(){
-            $(this).addClass('hover');
+        $('#left').mouseover(function(){
+            var spanClass = $(this).find("span");
+            $.each(spanClass, function(index, value){
+                $(value).mouseover(function(){
+                    var classNumber = $(this).attr("class");
+                    // console.log("Found class: " + classNumber)
+                    var rightClass = $('#right').find("span");
+                    // console.log("Right class: " + rightClass)
+                    $.each(rightClass, function(i, val){
+                        if ($(val).hasClass(classNumber)) {
+                            $(val).addClass('hover');
+                        }
+                    });
+                    $(this).addClass('hover');
+                });
+            });
         });
-        $('#hhh').mouseout(function(){
-            $(this).removeClass('hover');
+        $('#left').mouseout(function(){
+            var spanClass = $(this).find("span");
+            $.each(spanClass, function(index, value){
+                $(this).removeClass('hover');
+                var rightClass = $('#right').find("span");
+                $.each(rightClass, function(i, val){
+                    $(val).removeClass('hover')
+                });
+            });
         });
     });
 </script>
@@ -51,7 +72,7 @@
     }
     .hover
     {
-        background-color:chartreuse;
+        background-color:rgb(32, 103, 255);
     } 
 </style>
 </head>

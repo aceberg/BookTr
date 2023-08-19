@@ -20,7 +20,7 @@ func startTr(text, from, to string) {
 
 		tr.ID = i
 		tr.Left = allStrings[i]
-		tr.Right = translate.Libre(allStrings[i], from, to)
+		tr.Right = translate.Libre(allStrings[i], from, to) + " "
 
 		if strings.Contains(tr.Left, "\n") {
 			tr.Right = "\n" + tr.Right
