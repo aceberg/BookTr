@@ -1,22 +1,40 @@
 {{ define "translate" }}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
+    function myFunction() {
+        
+        console.log("Run func, i = " + i)
+
+        $.getJSON("/next/?id=" + i, function(result){
+                
+            if (result["id"] === i.toString()) {
+                console.log("ID not empty:"+ result["id"]+"; i = "+i)
+                $("#left").append('<span class="cl'+i+'">'+result["left"]+'</span>');
+                $("#right").append('<span class="cl'+i+'">'+result["right"]+'</span>');
+
+                i = i + 1;
+            } 
+        });
+        return;
+    };
+    var i = 0;
+    let myFi = setInterval(myFunction, 1000);
+
     $(document).ready (function () {        
 
-        var i = 0;
-        $("button").click(function(){
+        // $("button").click(function(){
                 
-            $.getJSON("/next/?id=" + i, function(result){
+        //     $.getJSON("/next/?id=" + i, function(result){
                 
-                if (result["id"] === i.toString()) {
-                    // console.log("ID not empty:"+ result["id"]+"; i = "+i)
-                    $("#left").append('<span class="cl'+i+'">'+result["left"]+'</span>');
-                    $("#right").append('<span class="cl'+i+'">'+result["right"]+'</span>');
+        //         if (result["id"] === i.toString()) {
+        //             // console.log("ID not empty:"+ result["id"]+"; i = "+i)
+        //             $("#left").append('<span class="cl'+i+'">'+result["left"]+'</span>');
+        //             $("#right").append('<span class="cl'+i+'">'+result["right"]+'</span>');
 
-                    i = i + 1;
-                }
-            });
-        });
+        //             i = i + 1;
+        //         }
+        //     });
+        // });
 
         $('#left').mouseover(function(){
             var spanClass = $(this).find("span");
@@ -79,9 +97,9 @@
 <body>
     <div class="container">
         <br>
-        <div class="row">
+        <!-- <div class="row">
             <button>Next</button>
-        </div>
+        </div> -->
         <div class="row">
             <div class="col">
                 <div id="left"></div>
