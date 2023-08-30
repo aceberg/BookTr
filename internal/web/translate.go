@@ -17,5 +17,7 @@ func translateHandler(w http.ResponseWriter, r *http.Request) {
 		go startTr(text, "en", "ru")
 	}
 
+	guiData.Hover = AppConfig.HoverCol + AppConfig.HoverTr
+
 	execTemplate(w, "translate", guiData)
 }

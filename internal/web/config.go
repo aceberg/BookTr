@@ -28,6 +28,8 @@ func saveConfigHandler(w http.ResponseWriter, r *http.Request) {
 	AppConfig.Port = r.FormValue("port")
 	AppConfig.Theme = r.FormValue("theme")
 	AppConfig.Color = r.FormValue("color")
+	AppConfig.HoverCol = r.FormValue("hover_col")
+	AppConfig.HoverTr = r.FormValue("hover_tr")
 
 	conf.Write(AppConfig)
 

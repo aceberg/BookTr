@@ -9,6 +9,8 @@ type Conf struct {
 	Icon     string
 	ConfPath string
 	NodePath string
+	HoverCol string
+	HoverTr  string
 }
 
 // Translate - text to translate
@@ -23,4 +25,5 @@ type GuiData struct {
 	Config Conf
 	Themes []string
 	Tr     Translate
+	Hover  string
 }

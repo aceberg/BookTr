@@ -3,17 +3,18 @@
 <script>
     function myFunction() {
         
-        console.log("Run func, i = " + i)
+        // console.log("Run func, i = " + i)
 
+        
         $.getJSON("/next/?id=" + i, function(result){
                 
             if (result["id"] === i.toString()) {
-                console.log("ID not empty:"+ result["id"]+"; i = "+i)
+                
                 $("#left").append('<span class="cl'+i+'">'+result["left"]+'</span>');
                 $("#right").append('<span class="cl'+i+'">'+result["right"]+'</span>');
 
                 i = i + 1;
-            } 
+            }
         });
         return;
     };
@@ -21,20 +22,6 @@
     let myFi = setInterval(myFunction, 1000);
 
     $(document).ready (function () {        
-
-        // $("button").click(function(){
-                
-        //     $.getJSON("/next/?id=" + i, function(result){
-                
-        //         if (result["id"] === i.toString()) {
-        //             // console.log("ID not empty:"+ result["id"]+"; i = "+i)
-        //             $("#left").append('<span class="cl'+i+'">'+result["left"]+'</span>');
-        //             $("#right").append('<span class="cl'+i+'">'+result["right"]+'</span>');
-
-        //             i = i + 1;
-        //         }
-        //     });
-        // });
 
         $('#left').mouseover(function(){
             var spanClass = $(this).find("span");
@@ -53,6 +40,7 @@
                 });
             });
         });
+
         $('#left').mouseout(function(){
             var spanClass = $(this).find("span");
             $.each(spanClass, function(index, value){
@@ -90,7 +78,7 @@
     }
     .hover
     {
-        background-color:rgb(32, 103, 255);
+        background-color:{{ .Hover }};
     } 
 </style>
 </head>
