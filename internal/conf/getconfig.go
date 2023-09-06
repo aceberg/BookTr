@@ -15,7 +15,7 @@ func Get(path string) models.Conf {
 	viper.SetDefault("PORT", "8851")
 	viper.SetDefault("THEME", "cosmo")
 	viper.SetDefault("COLOR", "dark")
-	viper.SetDefault("HOVER_COL", "#89ff89")
+	viper.SetDefault("HOVER_COL", "#55b8ff")
 	viper.SetDefault("HOVER_TR", "50")
 
 	viper.SetConfigFile(path)
