@@ -1,1 +1,14 @@
+/* VARS */
+:root {
+  --transparent-light: #ffffff15;
+}
 
+/* Transparant icon button */
+.shade-hover {
+  padding: 9px;
+  border-radius: 15%;
+}
+.shade-hover:hover {
+  background-color: var(--transparent-light);
+  cursor: pointer;
+}
