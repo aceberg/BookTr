@@ -16,6 +16,7 @@ export const apiTranslate = async (text: string) => {
         res = request.responseText;
       }
       mobxStore.setTrResult(res);
+      console.log("API: TR RES:", res);
     }
 
     request.send(data);

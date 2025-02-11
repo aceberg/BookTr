@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import AddText from "./AddText";
 
 const Header: React.FC = () => {
 
@@ -35,9 +36,7 @@ const Header: React.FC = () => {
       <div className='d-flex justify-content-between mt-2'>
         <h3 className="shade-hover rounded-3" onClick={handleReload}>BookTr</h3>
         <div className='d-flex justify-content-between'>
-          {/* <TypesDropdown></TypesDropdown>
-          <span className="p-3"></span>
-          <ConfigDropdown></ConfigDropdown> */}
+          <AddText></AddText>
         </div>
       </div>
     </div>
