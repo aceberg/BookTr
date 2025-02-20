@@ -9,7 +9,7 @@ export const getConfig = async () => {
   return conf;
 };
 
-export const apiSaveConf = (conf: Conf) => {
+export const apiSaveConf = async (conf: Conf) => {
   let data = new FormData();
   
   data.set('conf', JSON.stringify(conf));

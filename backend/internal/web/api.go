@@ -49,12 +49,16 @@ func apiSaveConf(c *gin.Context) {
 	err := json.Unmarshal([]byte(str), &config)
 	check.IfError(err)
 
-	// log.Println("CONF", config)
+	log.Println("CONF", config)
 	appConfig.Host = config.Host
 	appConfig.Port = config.Port
 	appConfig.Theme = config.Theme
 	appConfig.Color = config.Color
 	appConfig.NodePath = config.NodePath
+	appConfig.LangFrom = config.LangFrom
+	appConfig.LangTo = config.LangTo
+	appConfig.LtrPath = config.LtrPath
+	appConfig.LtrKey = config.LtrKey
 
 	conf.Write(appConfig)
 

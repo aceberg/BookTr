@@ -6,6 +6,10 @@ export interface Conf {
     Theme: string;
     Color: string;
     NodePath: string;
+    LangFrom: string;
+    LangTo: string;
+    LtrPath: string;
+    LtrKey: string;
 };
 
 export interface TrStruct {
@@ -26,7 +30,11 @@ class MobxStore {
         Port: "",
         Theme: "",
         Color: "",
-        NodePath: ""
+        NodePath: "",
+        LangFrom: "",
+        LangTo: "",
+        LtrPath: "",
+        LtrKey: "",
     }
     setAppConfig(conf:Conf) {
         this.appConfig = conf;

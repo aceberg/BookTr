@@ -36,11 +36,6 @@ func Gui(dirPath, nodePath string) {
 	appConfig.ConfPath = confPath
 	appConfig.NodePath = nodePath
 
-	// Remove after config is done
-	appConfig.LtrPath = "http://192.168.2.3:5000"
-	appConfig.LangFrom = "en"
-	appConfig.LangTo = "ru"
-
 	log.Println("INFO: starting web gui with config", appConfig.ConfPath)
 
 	address := appConfig.Host + ":" + appConfig.Port

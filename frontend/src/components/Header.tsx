@@ -3,6 +3,7 @@ import AddText from "./AddText";
 import { observer } from "mobx-react-lite";
 import mobxStore, { Conf } from "../functions/mobx-store";
 import { getConfig } from "../functions/api";
+import ConfigSettings from "./ConfigSettings";
 
 const Header: React.FC = observer(() => {
 
@@ -55,6 +56,8 @@ const Header: React.FC = observer(() => {
         }
         <div className='d-flex justify-content-between'>
           <AddText></AddText>
+          <span className="p-1"></span>
+          <ConfigSettings></ConfigSettings>
         </div>
       </div>
     </div>
