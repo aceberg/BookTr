@@ -1,7 +1,7 @@
 import { useState } from "react";
 import BootstrapModal from "./Modal";
 import { observer } from "mobx-react-lite";
-import { splitInput } from "../functions/api";
+import { splitAndTranslate } from "../functions/translate";
 
 const AddText:React.FC = observer(() => {
 
@@ -13,7 +13,7 @@ const AddText:React.FC = observer(() => {
   const handleCloseModal = async () => {
     // console.log("SAVED", postContent);
     setModalOpen(false);
-    await splitInput(postContent);
+    await splitAndTranslate(postContent);
   }
 
   return (

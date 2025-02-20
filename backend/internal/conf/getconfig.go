@@ -13,10 +13,9 @@ func Get(path string) models.Conf {
 
 	viper.SetDefault("HOST", "0.0.0.0")
 	viper.SetDefault("PORT", "8851")
-	viper.SetDefault("THEME", "cosmo")
-	viper.SetDefault("COLOR", "dark")
-	// viper.SetDefault("HOVER_COL", "#55b8ff")
-	// viper.SetDefault("HOVER_TR", "50")
+	viper.SetDefault("THEME", "ocean")
+	viper.SetDefault("COLOR", "light")
+	viper.SetDefault("NODEPATH", "")
 
 	viper.SetConfigFile(path)
 	viper.SetConfigType("yaml")
@@ -29,8 +28,7 @@ func Get(path string) models.Conf {
 	config.Port, _ = viper.Get("PORT").(string)
 	config.Theme, _ = viper.Get("THEME").(string)
 	config.Color, _ = viper.Get("COLOR").(string)
-	// config.HoverCol, _ = viper.Get("HOVER_COL").(string)
-	// config.HoverTr, _ = viper.Get("HOVER_TR").(string)
+	config.NodePath, _ = viper.Get("NODEPATH").(string)
 
 	return config
 }
@@ -45,8 +43,7 @@ func Write(config models.Conf) {
 	viper.Set("port", config.Port)
 	viper.Set("theme", config.Theme)
 	viper.Set("color", config.Color)
-	// viper.Set("hover_col", config.HoverCol)
-	// viper.Set("hover_tr", config.HoverTr)
+	viper.Set("nodepath", config.NodePath)
 
 	err := viper.WriteConfig()
 	check.IfError(err)

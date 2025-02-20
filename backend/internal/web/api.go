@@ -1,11 +1,15 @@
 package web
 
 import (
+	"encoding/json"
 	"log"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
 
+	"github.com/aceberg/BookTr/internal/check"
+	"github.com/aceberg/BookTr/internal/conf"
+	"github.com/aceberg/BookTr/internal/models"
 	"github.com/aceberg/BookTr/internal/translate"
 )
 
@@ -17,10 +21,15 @@ func apiHandler(c *gin.Context) {
 	c.IndentedJSON(http.StatusOK, msg)
 }
 
-func apiTr(c *gin.Context) {
+func apiGetTr(c *gin.Context) {
+	var result string
 
-	text := c.PostForm("text")
-	result := translate.Libre(text, "en", "ru")
+	text := c.Query("text")
+	if text == "" {
+		result = ""
+	} else {
+		result = translate.Libre(text, appConfig)
+	}
 
 	log.Println("TEXT", text)
 	log.Println("RESULT", result)
@@ -28,13 +37,26 @@ func apiTr(c *gin.Context) {
 	c.IndentedJSON(http.StatusOK, result)
 }
 
-func apiTrGet(c *gin.Context) {
+func apiGetConfig(c *gin.Context) {
 
-	text := c.Query("text")
-	result := translate.Libre(text, "en", "ru")
+	c.IndentedJSON(http.StatusOK, appConfig)
+}
 
-	log.Println("TEXT", text)
-	log.Println("RESULT", result)
+func apiSaveConf(c *gin.Context) {
+	var config models.Conf
 
-	c.IndentedJSON(http.StatusOK, result)
+	str := c.PostForm("conf")
+	err := json.Unmarshal([]byte(str), &config)
+	check.IfError(err)
+
+	// log.Println("CONF", config)
+	appConfig.Host = config.Host
+	appConfig.Port = config.Port
+	appConfig.Theme = config.Theme
+	appConfig.Color = config.Color
+	appConfig.NodePath = config.NodePath
+
+	conf.Write(appConfig)
+
+	c.IndentedJSON(http.StatusOK, true)
 }

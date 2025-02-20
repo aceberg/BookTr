@@ -20,3 +20,8 @@
   overflow-y:scroll;
   white-space: pre-wrap;
 }
+
+.tr-mouse-hover {
+  background-color: var(--transparent-light);
+  cursor: pointer;
+}

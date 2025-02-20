@@ -1,7 +1,15 @@
 import { makeAutoObservable } from 'mobx';
 
+export interface Conf {
+    Host: string;
+    Port: string;
+    Theme: string;
+    Color: string;
+    NodePath: string;
+};
+
 export interface TrStruct {
-    ID: number;
+    ID: string;
     Text: string;
     Result: string;
 };
@@ -13,9 +21,20 @@ class MobxStore {
         makeAutoObservable(this);
     }
 
-    updTr:boolean = false;
-    setUpdTr(b:boolean) {
-        this.updTr = b;
+    appConfig:Conf = {
+        Host: "",
+        Port: "",
+        Theme: "",
+        Color: "",
+        NodePath: ""
+    }
+    setAppConfig(conf:Conf) {
+        this.appConfig = conf;
+    }
+
+    updHead:boolean = false;
+    setUpdHead(b:boolean) {
+        this.updHead = b;
     }
 
     trBlock:TrBlock[] = [];
@@ -24,6 +43,15 @@ class MobxStore {
     }
     pushTrBlock(t:TrBlock) {
         this.trBlock.push(t);
+    }
+
+    doneCounter:number = 0;
+    setDoneCounter(n:number) {
+        this.doneCounter = n;
+    }
+    totalCounter:number = 0;
+    setTotalCounter(n:number) {
+        this.totalCounter = n;
     }
 }
 

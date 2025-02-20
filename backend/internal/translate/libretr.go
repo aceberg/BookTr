@@ -4,17 +4,18 @@ import (
 	tr "github.com/snakesel/libretranslate"
 
 	"github.com/aceberg/BookTr/internal/check"
+	"github.com/aceberg/BookTr/internal/models"
 )
 
 // Libre - translate with LibreTranslate
-func Libre(text, from, to string) string {
+func Libre(text string, conf models.Conf) string {
 
 	trans := tr.New(tr.Config{
-		Url: "http://192.168.2.3:5000",
-		Key: "",
+		Url: conf.LtrPath,
+		Key: conf.LtrKey,
 	})
 
-	result, err := trans.Translate(text, from, to)
+	result, err := trans.Translate(text, conf.LangFrom, conf.LangTo)
 	check.IfError(err)
 
 	return result

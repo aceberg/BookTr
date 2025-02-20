@@ -36,6 +36,11 @@ func Gui(dirPath, nodePath string) {
 	appConfig.ConfPath = confPath
 	appConfig.NodePath = nodePath
 
+	// Remove after config is done
+	appConfig.LtrPath = "http://192.168.2.3:5000"
+	appConfig.LangFrom = "en"
+	appConfig.LangTo = "ru"
+
 	log.Println("INFO: starting web gui with config", appConfig.ConfPath)
 
 	address := appConfig.Host + ":" + appConfig.Port
@@ -53,10 +58,11 @@ func Gui(dirPath, nodePath string) {
 	router.GET("/", indexHandler) // index.go
 	router.StaticFS("/fs", http.FS(assetsFS))
 
-	router.GET("/api", apiHandler)  // api.go
-	router.GET("/api/tr", apiTrGet) // api.go
+	router.GET("/api", apiHandler)        // api.go
+	router.GET("/api/conf", apiGetConfig) // api.go
+	router.GET("/api/tr", apiGetTr)       // api.go
 
-	router.POST("/api/tr", apiTr) // api.go
+	router.POST("/api/conf", apiSaveConf) // api.go
 
 	err := router.Run(address)
 	check.IfError(err)
