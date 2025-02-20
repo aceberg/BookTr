@@ -1,20 +1,19 @@
 import { useState } from "react";
 import BootstrapModal from "./Modal";
 import { observer } from "mobx-react-lite";
-import mobxStore from "../functions/mobx-store";
+import { splitInput } from "../functions/api";
 
 const AddText:React.FC = observer(() => {
 
   const [isModalOpen, setModalOpen] = useState<boolean>(false);
   const [postContent, setPostContent] = useState('');
 
-  const handleOpen = async () => setModalOpen(true);
+  const handleOpen = () => setModalOpen(true);
 
-  const handleCloseModal = () => {
-    mobxStore.setTrText(postContent);
-    console.log("SAVED", postContent);
-    mobxStore.setUpdTr(true);
+  const handleCloseModal = async () => {
+    // console.log("SAVED", postContent);
     setModalOpen(false);
+    await splitInput(postContent);
   }
 
   return (

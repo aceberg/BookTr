@@ -53,7 +53,8 @@ func Gui(dirPath, nodePath string) {
 	router.GET("/", indexHandler) // index.go
 	router.StaticFS("/fs", http.FS(assetsFS))
 
-	router.GET("/api", apiHandler) // api.go
+	router.GET("/api", apiHandler)  // api.go
+	router.GET("/api/tr", apiTrGet) // api.go
 
 	router.POST("/api/tr", apiTr) // api.go
 

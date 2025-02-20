@@ -27,3 +27,14 @@ func apiTr(c *gin.Context) {
 
 	c.IndentedJSON(http.StatusOK, result)
 }
+
+func apiTrGet(c *gin.Context) {
+
+	text := c.Query("text")
+	result := translate.Libre(text, "en", "ru")
+
+	log.Println("TEXT", text)
+	log.Println("RESULT", result)
+
+	c.IndentedJSON(http.StatusOK, result)
+}
