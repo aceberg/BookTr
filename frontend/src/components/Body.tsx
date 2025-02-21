@@ -18,6 +18,7 @@ const Body: React.FC = observer(() => {
     <>
       {mobxStore.trBlock?.map((block, k) => (
       <div key={k} className="row">
+        {/* <div className="col-sm-auto opacity-50" style={{width: "3em"}}>{k}</div> */}
         <div className="col-md">
           <div className="tr-text">{block?.map((item, i) => (
             <span key={i} className={item.ID} onMouseOver={() => handleMouseOver(item.ID)} onMouseLeave={() => handleMouseLeave(item.ID)}>

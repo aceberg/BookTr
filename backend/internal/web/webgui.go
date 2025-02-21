@@ -34,7 +34,9 @@ func Gui(dirPath, nodePath string) {
 
 	appConfig.DirPath = dirPath
 	appConfig.ConfPath = confPath
-	appConfig.NodePath = nodePath
+	if nodePath != "" {
+		appConfig.NodePath = nodePath
+	}
 
 	log.Println("INFO: starting web gui with config", appConfig.ConfPath)
 

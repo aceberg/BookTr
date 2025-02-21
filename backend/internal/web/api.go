@@ -87,9 +87,6 @@ func apiSaveFile(c *gin.Context) {
 	err := json.Unmarshal([]byte(str), &toSave)
 	check.IfError(err)
 
-	log.Println("Name to save", toSave.Name)
-	log.Println("File content", toSave.Blocks)
-
 	path := appConfig.DirPath + "/saved/" + toSave.Name
 	check.Path(path)
 	yaml.Write(path, toSave)
@@ -118,8 +115,6 @@ func apiGetList(c *gin.Context) {
 			list = append(list, file.Name())
 		}
 	}
-
-	log.Println("Files", list)
 
 	c.IndentedJSON(http.StatusOK, list)
 }

@@ -29,9 +29,9 @@ const SaveToDisk:React.FC = observer(() => {
   }
 
   const handleLoad = async (name: string) => {
+    setModalOpen(false);
     const file = await apiGetFile(name);
     mobxStore.setTrBlock(file.Blocks);
-    setModalOpen(false);
   }
 
   useEffect(() => {
@@ -52,8 +52,8 @@ const SaveToDisk:React.FC = observer(() => {
         size="modal"
         body={<>
           {fileList?.map((item, i) => (
-            <div key={i} className='d-flex justify-content-between shade-hover rounded-0'>
-              <p onClick={() => handleLoad(item)}>{item}</p>
+            <div key={i} className='d-flex flex-wrap shade-hover rounded-0'>
+              <div className="flex-grow-1" onClick={() => handleLoad(item)}>{item}</div>
               <i className="bi bi-x shade-hover" title='Delete' onClick={() => handleDel(item)}></i>
             </div>
           ))}
