@@ -1,8 +1,8 @@
 FROM golang:alpine AS builder
 
 RUN apk add build-base
-COPY . /src
-RUN cd /src/cmd/booktr/ && CGO_ENABLED=0 go build -o /booktr .
+COPY backend /src
+RUN cd /src/cmd/BookTr/ && CGO_ENABLED=0 go build -o /booktr .
 
 
 FROM scratch
