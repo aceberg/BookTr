@@ -14,3 +14,20 @@ type Conf struct {
 	LangFrom string
 	LangTo   string
 }
+
+// TrStruct - one translated sentence
+type TrStruct struct {
+	ID     string
+	Text   string
+	Result string
+}
+
+// TrBlock - one block
+type TrBlock []TrStruct
+
+// ToSave - save to file
+type ToSave struct {
+	Name     string
+	Bookmark string
+	Blocks   []TrBlock
+}

@@ -1,12 +1,12 @@
 [Unit]
-Description=booktr
-Documentation=https://github.com/aceberg/booktr
+Description=BookTr
+Documentation=https://github.com/aceberg/BookTr
 After=network-online.target
 Wants=network-online.target
 
 [Service]
 User=%i
-ExecStart=/usr/bin/booktr -c /home/%i/.config/booktr/config.yaml
+ExecStart=/usr/bin/booktr -d /home/%i/.config/BookTr/
 Restart=on-failure
 
 [Install]

@@ -58,7 +58,7 @@ function ConfigSettings() {
 
   return (
     <>
-      <i className="bi bi-gear shade-hover fs-3" onClick={handleEdit} title="Settings"></i>
+      <i className="bi bi-gear shade-hover text-primary fs-3" onClick={handleEdit} title="Settings"></i>
       <BootstrapModal
         isOpen={isModalOpen}
         title="Settings"

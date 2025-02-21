@@ -18,7 +18,7 @@ const AddText:React.FC = observer(() => {
 
   return (
     <>
-      <i className="bi bi-window-plus shade-hover fs-3" onClick={handleOpen} title="Add text to translate"></i>
+      <i className="bi bi-window-plus shade-hover text-primary fs-3" onClick={handleOpen} title="Add text"></i>
       <BootstrapModal
         isOpen={isModalOpen}
         title={"Add text"}

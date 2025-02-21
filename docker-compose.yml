@@ -4,7 +4,7 @@ services:
     image: aceberg/booktr   
     restart: unless-stopped
     volumes:
-    - ~/.dockerdata/booktr:/data/booktr
+    - ~/.dockerdata/BookTr:/data/BookTr
     environment:
       TZ: Asia/Novosibirsk    # required, default: ""
       HOST: "0.0.0.0"         # optional, default: 0.0.0.0

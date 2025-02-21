@@ -4,6 +4,7 @@ import { observer } from "mobx-react-lite";
 import mobxStore, { Conf } from "../functions/mobx-store";
 import { getConfig } from "../functions/api";
 import ConfigSettings from "./ConfigSettings";
+import SaveToDisk from "./SaveToDisk";
 
 const Header: React.FC = observer(() => {
 
@@ -52,16 +53,17 @@ const Header: React.FC = observer(() => {
       
       <div className='d-flex justify-content-between mt-2'>
         <div className='d-flex justify-content-between'>
-          <h3 className="shade-hover rounded-3" onClick={handleReload}>BookTr</h3>
+          <h3 className="shade-hover rounded-3 text-primary" onClick={handleReload}>BookTr</h3>
           <span className="p-1"></span>
           <div className="opacity-50">{lang}</div>
         </div>
         {mobxStore.totalCounter > 0
-          ? <div className="opacity-50">Translated {mobxStore.doneCounter} of {mobxStore.totalCounter}</div>
-          : ''
+          && <div className="opacity-50">Translated {mobxStore.doneCounter} of {mobxStore.totalCounter}</div>
         }
         <div className='d-flex justify-content-between'>
           <AddText></AddText>
+          <span className="p-1"></span>
+          <SaveToDisk></SaveToDisk>
           <span className="p-1"></span>
           <ConfigSettings></ConfigSettings>
         </div>

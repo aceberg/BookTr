@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/gin-gonic/gin"
 
@@ -11,6 +12,7 @@ import (
 	"github.com/aceberg/BookTr/internal/conf"
 	"github.com/aceberg/BookTr/internal/models"
 	"github.com/aceberg/BookTr/internal/translate"
+	"github.com/aceberg/BookTr/internal/yaml"
 )
 
 func apiHandler(c *gin.Context) {
@@ -74,6 +76,60 @@ func apiSaveConf(c *gin.Context) {
 	appConfig.LtrKey = config.LtrKey
 
 	conf.Write(appConfig)
+
+	c.IndentedJSON(http.StatusOK, true)
+}
+
+func apiSaveFile(c *gin.Context) {
+	var toSave models.ToSave
+
+	str := c.PostForm("tosave")
+	err := json.Unmarshal([]byte(str), &toSave)
+	check.IfError(err)
+
+	log.Println("Name to save", toSave.Name)
+	log.Println("File content", toSave.Blocks)
+
+	path := appConfig.DirPath + "/saved/" + toSave.Name
+	check.Path(path)
+	yaml.Write(path, toSave)
+
+	c.IndentedJSON(http.StatusOK, true)
+}
+
+func apiGetFile(c *gin.Context) {
+
+	name := c.Query("name")
+	path := appConfig.DirPath + "/saved/" + name
+	toSave := yaml.Read(path)
+
+	c.IndentedJSON(http.StatusOK, toSave)
+}
+
+func apiGetList(c *gin.Context) {
+	var list []string
+
+	path := appConfig.DirPath + "/saved/"
+	files, err := os.ReadDir(path)
+	check.IfError(err)
+
+	for _, file := range files {
+		if !file.IsDir() {
+			list = append(list, file.Name())
+		}
+	}
+
+	log.Println("Files", list)
+
+	c.IndentedJSON(http.StatusOK, list)
+}
+
+func apiDelFile(c *gin.Context) {
+
+	name := c.Query("name")
+	path := appConfig.DirPath + "/saved/" + name
+	err := os.Remove(path)
+	check.IfError(err)
 
 	c.IndentedJSON(http.StatusOK, true)
 }
