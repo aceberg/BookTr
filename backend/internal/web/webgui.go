@@ -56,6 +56,7 @@ func Gui(dirPath, nodePath string) {
 	router.GET("/api", apiHandler)        // api.go
 	router.GET("/api/conf", apiGetConfig) // api.go
 	router.GET("/api/tr", apiGetTr)       // api.go
+	router.GET("/api/tralt", apiGetTrAlt) // api.go
 
 	router.POST("/api/conf", apiSaveConf) // api.go
 

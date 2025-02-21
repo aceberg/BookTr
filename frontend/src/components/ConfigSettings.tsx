@@ -58,7 +58,6 @@ function ConfigSettings() {
 
   return (
     <>
-      {/* <a href="#" className="dropdown-item" onClick={handleEdit}>Settings</a> */}
       <i className="bi bi-gear shade-hover fs-3" onClick={handleEdit} title="Settings"></i>
       <BootstrapModal
         isOpen={isModalOpen}

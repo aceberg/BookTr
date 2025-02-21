@@ -1,22 +1,45 @@
 package translate
 
 import (
-	tr "github.com/snakesel/libretranslate"
+	"bytes"
+	"encoding/json"
+	"net/http"
+	"strings"
 
 	"github.com/aceberg/BookTr/internal/check"
 	"github.com/aceberg/BookTr/internal/models"
 )
 
 // Libre - translate with LibreTranslate
-func Libre(text string, conf models.Conf) string {
+func Libre(text string, conf models.Conf, alt string) string {
+	type Post struct {
+		Result string   `json:"translatedText"`
+		Error  string   `json:"error"`
+		Alt    []string `json:"alternatives"`
+	}
 
-	trans := tr.New(tr.Config{
-		Url: conf.LtrPath,
-		Key: conf.LtrKey,
+	postURL := conf.LtrPath + "/translate"
+	postBody, _ := json.Marshal(map[string]string{
+		"q":            text,
+		"source":       conf.LangFrom,
+		"target":       conf.LangTo,
+		"api_key":      conf.LtrKey,
+		"alternatives": alt, // if "0" - no alternatives
 	})
+	responseBody := bytes.NewBuffer(postBody)
 
-	result, err := trans.Translate(text, conf.LangFrom, conf.LangTo)
+	resp, err := http.Post(postURL, "application/json", responseBody)
 	check.IfError(err)
 
-	return result
+	defer resp.Body.Close()
+
+	post := &Post{}
+	err = json.NewDecoder(resp.Body).Decode(post)
+	check.IfError(err)
+
+	if len(post.Alt) > 0 {
+		return post.Result + " " + strings.Join(post.Alt, " ")
+	}
+
+	return post.Result
 }

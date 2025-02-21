@@ -53,6 +53,14 @@ class MobxStore {
         this.trBlock.push(t);
     }
 
+    trDetails:TrStruct[] = [];
+    setTrDetails(t:TrStruct[]) {
+        this.trDetails = t;
+    }
+    pushTrDetails(t:TrStruct) {
+        this.trDetails.push(t);
+    }
+
     doneCounter:number = 0;
     setDoneCounter(n:number) {
         this.doneCounter = n;

@@ -25,3 +25,10 @@ export const apiTranslate = async (text: string) => {
 
   return res;
 };
+
+export const apiTranslateAlt = async (text: string) => {
+  const url = api+'/api/tralt?text='+text;
+  const res = await (await fetch(url)).json();
+
+  return res;
+};

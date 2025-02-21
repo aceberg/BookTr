@@ -28,11 +28,24 @@ func apiGetTr(c *gin.Context) {
 	if text == "" {
 		result = ""
 	} else {
-		result = translate.Libre(text, appConfig)
+		result = translate.Libre(text, appConfig, "0")
 	}
 
 	log.Println("TEXT", text)
 	log.Println("RESULT", result)
+
+	c.IndentedJSON(http.StatusOK, result)
+}
+
+func apiGetTrAlt(c *gin.Context) {
+	var result string
+
+	text := c.Query("text")
+	if text == "" {
+		result = ""
+	} else {
+		result = translate.Libre(text, appConfig, "5")
+	}
 
 	c.IndentedJSON(http.StatusOK, result)
 }

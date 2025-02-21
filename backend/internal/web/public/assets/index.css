@@ -1,0 +1,1 @@
+:root{--transparent-light: #ffffff15}.shade-hover{padding:9px;border-radius:15%}.shade-hover:hover{background-color:var(--transparent-light);cursor:pointer}.tr-text{display:inline-block;border:3px;word-wrap:break-word;overflow-y:scroll;white-space:pre-wrap}.tr-mouse-hover{background-color:var(--transparent-light)}

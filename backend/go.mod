@@ -1,10 +1,9 @@
 module github.com/aceberg/BookTr
 
-go 1.23.3
+go 1.23.6
 
 require (
 	github.com/gin-gonic/gin v1.10.0
-	github.com/snakesel/libretranslate v0.0.2
 	github.com/spf13/viper v1.19.0
 )
 
