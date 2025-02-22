@@ -11,7 +11,7 @@ export const splitAndTranslate = async (text: string) => {
     arrOfSeg.push(segment);
   }
   arrOfSeg.push("\n");
-  mobxStore.setTotalCounter(arrOfSeg.length);
+  const totalCounter = arrOfSeg.length;
 
   let res = '';
   let oneTr:TrStruct = {ID: '', Text: '', Result: ''};
@@ -29,7 +29,7 @@ export const splitAndTranslate = async (text: string) => {
 
     oneTr = {ID: "id"+i, Text: s, Result: res};
     i = i + 1;
-    mobxStore.setDoneCounter(i);
+    mobxStore.setTopInfoLine('Translated '+i+' of '+totalCounter);
     // console.log("Done "+i+" of "+arrOfSeg.length);
     trBlock.push(oneTr);
 

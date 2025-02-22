@@ -61,13 +61,14 @@ class MobxStore {
         this.trDetails.push(t);
     }
 
-    doneCounter:number = 0;
-    setDoneCounter(n:number) {
-        this.doneCounter = n;
+    topInfoLine:string = '';
+    setTopInfoLine(n:string){
+        this.topInfoLine = n;
     }
-    totalCounter:number = 0;
-    setTotalCounter(n:number) {
-        this.totalCounter = n;
+
+    tooltipText:string = '';
+    setTooltipText(n:string){
+        this.tooltipText = n;
     }
 }
 

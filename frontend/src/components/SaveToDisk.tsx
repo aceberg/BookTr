@@ -31,6 +31,7 @@ const SaveToDisk:React.FC = observer(() => {
   const handleLoad = async (name: string) => {
     setModalOpen(false);
     const file = await apiGetFile(name);
+    mobxStore.setTopInfoLine(file.Name);
     mobxStore.setTrBlock(file.Blocks);
   }
 
@@ -57,6 +58,7 @@ const SaveToDisk:React.FC = observer(() => {
               <i className="bi bi-x shade-hover" title='Delete' onClick={() => handleDel(item)}></i>
             </div>
           ))}
+          <hr></hr>
           <label htmlFor="savetrid" className="form-label text-primary">Save current translation:</label>
           <form className="form input-group" id="savetrid">
             <input type="text" className="form-control" ref={inputRef} placeholder="Filename"></input>

@@ -94,6 +94,8 @@ function ConfigSettings() {
                 <input className="form-control mb-3" defaultValue={appConfig.LtrPath} id="pathid" name="LtrPath" onChange={handleChange}></input>
                 <label htmlFor="keyid" className="form-label text-primary">LTR Key</label>
                 <input className="form-control mb-3" defaultValue={appConfig.LtrKey} id="keyid" name="LtrKey" onChange={handleChange}></input>
+                <label htmlFor="gitid" className="form-label text-primary">About</label>
+                <p><a id="gitid" href="https://github.com/aceberg/BookTr" target="_blank">https://github.com/aceberg/BookTr</a></p>
               </div>
             </div>
             <hr></hr>

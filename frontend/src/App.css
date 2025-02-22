@@ -24,3 +24,18 @@
 .tr-mouse-hover {
   background-color: var(--transparent-light);
 }
+
+/* .tr-tooltip {
+  text-align: center;
+  margin-top: 200px;
+  position: "fixed";
+  top: "50%";
+  left: "50%";
+  transform: "translate(-50%, -50%)";
+  background-color: #000000da;
+  color: "white";
+  padding: "10px 15px";
+  border-radius: "4px";
+  white-space: "nowrap";
+  z-index: 1000;
+} */

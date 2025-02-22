@@ -10,8 +10,9 @@ const AddText:React.FC = observer(() => {
 
   const handleOpen = () => setModalOpen(true);
 
-  const handleCloseModal = async () => {
-    // console.log("SAVED", postContent);
+  const handleCloseModal = () => setModalOpen(false);
+
+  const handleSave = async () => {
     setModalOpen(false);
     await splitAndTranslate(postContent);
   }
@@ -23,12 +24,19 @@ const AddText:React.FC = observer(() => {
         isOpen={isModalOpen}
         title={"Add text"}
         size="modal-xl"
-        body={<textarea
-          value={postContent}
-          onChange={e => setPostContent(e.target.value)}
-          className="form-control"
-          rows={10}>
-          </textarea>}
+        body={<>
+          <textarea
+            value={postContent}
+            onChange={e => setPostContent(e.target.value)}
+            className="form-control"
+            rows={10}>
+          </textarea>
+          <hr></hr>
+          <div className='d-flex justify-content-between'>
+            <span></span>
+            <button className="btn btn-primary" onClick={handleSave}>Translate</button>
+          </div>
+          </>}
         onClose={handleCloseModal}
       />
     </>
