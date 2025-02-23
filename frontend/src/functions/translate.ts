@@ -20,10 +20,10 @@ export const splitAndTranslate = async (text: string) => {
   mobxStore.setTrBlock([]);
   for (const s of arrOfSeg) {
 
-    if (s === "\n") {
-      res = "";
+    res = await apiTranslate(s, "0");
+    if (s.includes("\n")) {
+      res = res+"\n";
     } else {
-      res = await apiTranslate(s, "0");
       res = res+" ";
     }
 
