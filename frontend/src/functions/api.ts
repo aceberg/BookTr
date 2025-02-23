@@ -25,20 +25,6 @@ export const apiSaveConf = async (conf: Conf) => {
   request.send(data);
 };
 
-export const apiTranslate = async (text: string) => {
-  const url = api+'/api/tr?text='+text;
-  const res = await (await fetch(url)).json();
-
-  return res;
-};
-
-export const apiTranslateAlt = async (text: string) => {
-  const url = api+'/api/tralt?text='+text;
-  const res = await (await fetch(url)).json();
-
-  return res;
-};
-
 export const apiSaveTr = async (name: string) => {
   let data = new FormData();
   
@@ -70,4 +56,29 @@ export const apiDelFile = async (name: string) => {
   const list = await (await fetch(url)).json();
 
   return list;
+};
+
+export const apiTranslate = async (text: string, alt: string) => {
+  let data = new FormData();
+
+  const treq = {Text: text.trim(), Alt: alt};
+
+  data.set('treq', JSON.stringify(treq));
+
+  try {
+    let response = await fetch(api + '/api/tr', {
+        method: "POST",
+        body: data
+    });
+
+    if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    let result = await response.json();
+    return result;
+  } catch (error) {
+    console.error("Error:", error);
+    return null;
+  }
 };

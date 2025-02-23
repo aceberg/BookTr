@@ -5,14 +5,15 @@ import (
 	"log"
 	"net/http"
 	"os"
+	// "strings"
 
 	"github.com/gin-gonic/gin"
 
 	"github.com/aceberg/BookTr/internal/check"
 	"github.com/aceberg/BookTr/internal/conf"
 	"github.com/aceberg/BookTr/internal/models"
+	"github.com/aceberg/BookTr/internal/myjson"
 	"github.com/aceberg/BookTr/internal/translate"
-	"github.com/aceberg/BookTr/internal/yaml"
 )
 
 func apiHandler(c *gin.Context) {
@@ -25,29 +26,23 @@ func apiHandler(c *gin.Context) {
 
 func apiGetTr(c *gin.Context) {
 	var result string
+	treq := struct {
+		Text string
+		Alt  string
+	}{"", ""}
 
-	text := c.Query("text")
-	if text == "" {
+	treqStr := c.PostForm("treq")
+	err := json.Unmarshal([]byte(treqStr), &treq)
+	check.IfError(err)
+
+	if treq.Text == "" {
 		result = ""
 	} else {
-		result = translate.Libre(text, appConfig, "0")
+		result = translate.Libre(treq.Text, appConfig, treq.Alt)
 	}
 
-	log.Println("TEXT", text)
+	log.Println("TEXT", treq.Text)
 	log.Println("RESULT", result)
-
-	c.IndentedJSON(http.StatusOK, result)
-}
-
-func apiGetTrAlt(c *gin.Context) {
-	var result string
-
-	text := c.Query("text")
-	if text == "" {
-		result = ""
-	} else {
-		result = translate.Libre(text, appConfig, "5")
-	}
 
 	c.IndentedJSON(http.StatusOK, result)
 }
@@ -89,7 +84,7 @@ func apiSaveFile(c *gin.Context) {
 
 	path := appConfig.DirPath + "/saved/" + toSave.Name
 	check.Path(path)
-	yaml.Write(path, toSave)
+	myjson.Write(path, toSave)
 
 	c.IndentedJSON(http.StatusOK, true)
 }
@@ -98,7 +93,7 @@ func apiGetFile(c *gin.Context) {
 
 	name := c.Query("name")
 	path := appConfig.DirPath + "/saved/" + name
-	toSave := yaml.Read(path)
+	toSave := myjson.Read(path)
 
 	c.IndentedJSON(http.StatusOK, toSave)
 }

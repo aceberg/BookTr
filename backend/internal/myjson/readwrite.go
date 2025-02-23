@@ -1,35 +1,34 @@
-package yaml
+package myjson
 
 import (
+	"encoding/json"
 	"log"
 	"os"
-
-	"gopkg.in/yaml.v3"
 
 	"github.com/aceberg/BookTr/internal/check"
 	"github.com/aceberg/BookTr/internal/models"
 )
 
-// Read - read .yaml file to struct
+// Read - read .json file to struct
 func Read(path string) models.ToSave {
 
 	file, err := os.ReadFile(path)
 	check.IfError(err)
 
 	var items models.ToSave
-	err = yaml.Unmarshal(file, &items)
+	err = json.Unmarshal(file, &items)
 	check.IfError(err)
 
 	return items
 }
 
-// Write - write struct to  .yaml file
+// Write - write struct to  .json file
 func Write(path string, items models.ToSave) {
 
-	yamlData, err := yaml.Marshal(&items)
+	jsonData, err := json.Marshal(&items)
 	check.IfError(err)
 
-	err = os.WriteFile(path, yamlData, 0644)
+	err = os.WriteFile(path, jsonData, 0644)
 	check.IfError(err)
 
 	log.Println("INFO: writing new file to", path)

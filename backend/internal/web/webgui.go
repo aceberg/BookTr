@@ -60,11 +60,10 @@ func Gui(dirPath, nodePath string) {
 	router.GET("/api/del", apiDelFile)    // api.go
 	router.GET("/api/file", apiGetFile)   // api.go
 	router.GET("/api/list", apiGetList)   // api.go
-	router.GET("/api/tr", apiGetTr)       // api.go
-	router.GET("/api/tralt", apiGetTrAlt) // api.go
 
 	router.POST("/api/conf", apiSaveConf) // api.go
 	router.POST("/api/file", apiSaveFile) // api.go
+	router.POST("/api/tr", apiGetTr)      // api.go
 
 	err := router.Run(address)
 	check.IfError(err)

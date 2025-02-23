@@ -1,4 +1,4 @@
-import { apiTranslate, apiTranslateAlt } from "./api";
+import { apiTranslate } from "./api";
 import mobxStore, { TrStruct } from "./mobx-store";
 
 export const splitAndTranslate = async (text: string) => {
@@ -19,18 +19,17 @@ export const splitAndTranslate = async (text: string) => {
   let i = 0;
   mobxStore.setTrBlock([]);
   for (const s of arrOfSeg) {
-    
-    res = await apiTranslate(s);
-    if (s.includes("\n")) {
-      res = res+"\n";
+
+    if (s === "\n") {
+      res = "";
     } else {
+      res = await apiTranslate(s, "0");
       res = res+" ";
     }
 
     oneTr = {ID: "id"+i, Text: s, Result: res};
     i = i + 1;
     mobxStore.setTopInfoLine('Translated '+i+' of '+totalCounter);
-    // console.log("Done "+i+" of "+arrOfSeg.length);
     trBlock.push(oneTr);
 
     if (s === "\n") {
@@ -48,7 +47,7 @@ export const trSentence = async (text: string) => {
   const text1 = text.split('.').join("");
 
   for (const word of text1.split(" ")) {
-    res = await apiTranslateAlt(word);
+    res = await apiTranslate(word, "3");
     oneTr = {ID: '', Text: word, Result: res};
     mobxStore.pushTrDetails(oneTr);
   }

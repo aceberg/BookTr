@@ -3,7 +3,7 @@ import BootstrapModal from "./Modal";
 import { observer } from "mobx-react-lite";
 import { trSentence } from "../functions/translate";
 import mobxStore from "../functions/mobx-store";
-import { apiTranslateAlt } from "../functions/api";
+import { apiTranslate } from "../functions/api";
 
 type Props = {text: string};
 const Details:React.FC<Props> = observer((_props) => {
@@ -21,7 +21,7 @@ const Details:React.FC<Props> = observer((_props) => {
     const selection = window.getSelection();
     if (selection && selection.toString().trim() !== "") {
       const str = selection.toString();
-      const res = await apiTranslateAlt(str);
+      const res = await apiTranslate(str, "3");
       console.log("TOOLTIP", res);
       mobxStore.setTooltipText(res);
       setTimeout(() => {
