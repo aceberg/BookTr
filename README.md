@@ -41,7 +41,8 @@ docker run --name BookTr \
     -v ~/.dockerdata/BookTr:/data/BookTr  \ 
     -p 8856:8856 \
   aceberg/BookTr
-```  
+``` 
+Or use [docker-compose.yml](./docker-compose.yml) 
 
 </details> 
 
@@ -77,12 +78,12 @@ All binaries are available in the [latest](https://github.com/aceberg/BookTr/rel
 #### Connect to LibreTranslate
 | Variable  | Description | Default |
 | --------  | ----------- | ------- |
-| LANGFROM | Translate from | fr |
-| LANGTO | Translate to | en |
+| LANGFROM | Translate from `*` | fr |
+| LANGTO | Translate to `*` | en |
 | LTRPATH | LibreTranslate URL |  |
 | LTRKEY | LibreTranslate API key (optional) | |
 
-All languages available in LibreTranslate: `http://YOUR_LTR_URL/languages`
+`*` All languages available in LibreTranslate: `http://YOUR_LTR_URL/languages`
 
 </details>
 

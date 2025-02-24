@@ -10,9 +10,9 @@ services:
     restart: unless-stopped
     ports:
     - 5000:5000
-  # WARNNING! LibreTranslate needs A LOT of time to download everything the container needs, so check if it is up, before using BookTr. Check http://YOUR-ADDRESS:5000
+  # WARNING! LibreTranslate needs A LOT of time to download everything the container needs, so check if it is up, before using BookTr. Check http://YOUR-ADDRESS:5000
   booktr:
-    image: aceberg/booktr   
+    image: aceberg/booktr
     restart: unless-stopped
     ports:
     - 8856:8856
