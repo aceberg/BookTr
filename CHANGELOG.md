@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ## [0.1.4] - 2025-02-
 ### Added
 - Top Info block
+- README
 
 ## [0.1.3] - 2025-02-24
 ### Changed
