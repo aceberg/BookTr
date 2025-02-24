@@ -2,6 +2,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [0.1.4] - 2025-02-
+### Added
+- Top Info block
+
 ## [0.1.3] - 2025-02-24
 ### Changed
 - Save files to `json` instead of `yaml`

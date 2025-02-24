@@ -29,7 +29,7 @@ export const splitAndTranslate = async (text: string) => {
 
     oneTr = {ID: "id"+i, Text: s, Result: res};
     i = i + 1;
-    mobxStore.setTopInfoLine('Translated '+i+' of '+totalCounter);
+    mobxStore.setTopInfoBlock('Translated '+i+' of '+totalCounter, '');
     trBlock.push(oneTr);
 
     if (s === "\n") {

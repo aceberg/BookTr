@@ -27,7 +27,7 @@ type TrBlock []TrStruct
 
 // ToSave - save to file
 type ToSave struct {
-	Name     string
-	Bookmark string
-	Blocks   []TrBlock
+	Name   string
+	Note   string
+	Blocks []TrBlock
 }

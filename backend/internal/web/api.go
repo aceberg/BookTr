@@ -5,7 +5,6 @@ import (
 	"log"
 	"net/http"
 	"os"
-	// "strings"
 
 	"github.com/gin-gonic/gin"
 
@@ -41,8 +40,8 @@ func apiGetTr(c *gin.Context) {
 		result = translate.Libre(treq.Text, appConfig, treq.Alt)
 	}
 
-	log.Println("TEXT", treq.Text)
-	log.Println("RESULT", result)
+	log.Println("INFO: text:", treq.Text)
+	log.Println("INFO: result:", result)
 
 	c.IndentedJSON(http.StatusOK, result)
 }
@@ -59,7 +58,7 @@ func apiSaveConf(c *gin.Context) {
 	err := json.Unmarshal([]byte(str), &config)
 	check.IfError(err)
 
-	log.Println("CONF", config)
+	// log.Println("INFO: new config", config)
 	appConfig.Host = config.Host
 	appConfig.Port = config.Port
 	appConfig.Theme = config.Theme

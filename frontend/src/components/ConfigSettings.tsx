@@ -91,11 +91,12 @@ function ConfigSettings() {
                 <label htmlFor="toid" className="form-label text-primary">Translate To</label>
                 <input className="form-control mb-3" defaultValue={appConfig.LangTo} id="toid" name="LangTo" onChange={handleChange}></input>
                 <label htmlFor="pathid" className="form-label text-primary">LTR Path</label>
-                <input className="form-control mb-3" defaultValue={appConfig.LtrPath} id="pathid" name="LtrPath" onChange={handleChange}></input>
+                <input className="form-control mb-3" defaultValue={appConfig.LtrPath} id="pathid" name="LtrPath" onChange={handleChange} placeholder="LibreTranslate URL"></input>
                 <label htmlFor="keyid" className="form-label text-primary">LTR Key</label>
-                <input className="form-control mb-3" defaultValue={appConfig.LtrKey} id="keyid" name="LtrKey" onChange={handleChange}></input>
+                <input className="form-control mb-3" defaultValue={appConfig.LtrKey} id="keyid" name="LtrKey" onChange={handleChange} placeholder="LibreTranslate API key (optional)"></input>
                 <label htmlFor="gitid" className="form-label text-primary">About</label>
-                <p><a id="gitid" href="https://github.com/aceberg/BookTr" target="_blank">https://github.com/aceberg/BookTr</a></p>
+                <div><a id="gitid" href="https://github.com/aceberg/BookTr" target="_blank">https://github.com/aceberg/BookTr</a></div>
+                <div>Donate: <a href="https://github.com/aceberg#donate" target="_blank">https://github.com/aceberg#donate</a></div>
               </div>
             </div>
             <hr></hr>

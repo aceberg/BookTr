@@ -6,6 +6,7 @@ import mobxStore from "../functions/mobx-store";
 
 const SaveToDisk:React.FC = observer(() => {
   const inputRef = useRef<HTMLInputElement>(null);
+  const noteRef = useRef<HTMLInputElement>(null);
 
   const [isModalOpen, setModalOpen] = useState<boolean>(false);
   const [updList, setUpdList] = useState<boolean>(false);
@@ -18,7 +19,8 @@ const SaveToDisk:React.FC = observer(() => {
   const handleSave = async () => {
     const name:string = inputRef.current?.value ?? "";
     if (name != '') {
-      await apiSaveTr(name);
+      const note:string = noteRef.current?.value ?? "";
+      await apiSaveTr(name, note);
       setUpdList(true);
     }
   }
@@ -31,7 +33,7 @@ const SaveToDisk:React.FC = observer(() => {
   const handleLoad = async (name: string) => {
     setModalOpen(false);
     const file = await apiGetFile(name);
-    mobxStore.setTopInfoLine(file.Name);
+    mobxStore.setTopInfoBlock(file.Name, file.Note);
     mobxStore.setTrBlock(file.Blocks);
   }
 
@@ -60,9 +62,12 @@ const SaveToDisk:React.FC = observer(() => {
           ))}
           <hr></hr>
           <label htmlFor="savetrid" className="form-label text-primary">Save current translation:</label>
-          <form className="form input-group" id="savetrid">
+          <form className="form" id="savetrid">
             <input type="text" className="form-control" ref={inputRef} placeholder="Filename"></input>
-            <button type="button" className="btn btn-primary" onClick={handleSave}>Save</button>
+            <div className="input-group mt-2">
+              <input type="text" className="form-control" ref={noteRef} placeholder="Note (optional)"></input>
+              <button type="button" className="btn btn-primary" onClick={handleSave}>Save</button>
+            </div>
           </form>
         </>}
         onClose={handleCloseModal}

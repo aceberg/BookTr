@@ -4,7 +4,7 @@ const api = 'http://0.0.0.0:8856';
 
 export interface ToSave {
   Name: string;
-  Bookmark: string;
+  Note: string;
   Blocks: TrBlock[];
 };
 
@@ -25,10 +25,10 @@ export const apiSaveConf = async (conf: Conf) => {
   request.send(data);
 };
 
-export const apiSaveTr = async (name: string) => {
+export const apiSaveTr = async (name: string, note: string) => {
   let data = new FormData();
   
-  const toSave:ToSave = {Name: name, Bookmark: '', Blocks: mobxStore.trBlock};
+  const toSave:ToSave = {Name: name, Note: note, Blocks: mobxStore.trBlock};
 
   data.set('tosave', JSON.stringify(toSave));
 

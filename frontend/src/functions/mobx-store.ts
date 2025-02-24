@@ -20,6 +20,11 @@ export interface TrStruct {
 
 export type TrBlock = TrStruct[];
 
+interface InfoBlock {
+    Text: string;
+    Note: string;
+}
+
 class MobxStore {
     constructor() {
         makeAutoObservable(this);
@@ -61,9 +66,14 @@ class MobxStore {
         this.trDetails.push(t);
     }
 
-    topInfoLine:string = '';
-    setTopInfoLine(n:string){
-        this.topInfoLine = n;
+    // topInfoLine:string = '';
+    // setTopInfoLine(n:string){
+    //     this.topInfoLine = n;
+    // }
+
+    topInfoBlock:InfoBlock = {Text: '', Note: ''};
+    setTopInfoBlock(text:string, note:string){
+        this.topInfoBlock = {Text: text, Note: note};
     }
 
     tooltipText:string = '';

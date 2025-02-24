@@ -57,7 +57,6 @@ const Header: React.FC = observer(() => {
           <span className="p-1"></span>
           <div className="opacity-50">{lang}</div>
         </div>
-        <div className="opacity-50">{mobxStore.topInfoLine}</div>
         <div className='d-flex justify-content-between'>
           <AddText></AddText>
           <span className="p-1"></span>
