@@ -12,6 +12,8 @@ import (
 
 // Libre - translate with LibreTranslate
 func Libre(text string, conf models.Conf, alt string) string {
+	var returnString string = "LibreTranslate Error. See logs for more info"
+
 	type Post struct {
 		Result string   `json:"translatedText"`
 		Error  string   `json:"error"`
@@ -29,17 +31,20 @@ func Libre(text string, conf models.Conf, alt string) string {
 	responseBody := bytes.NewBuffer(postBody)
 
 	resp, err := http.Post(postURL, "application/json", responseBody)
-	check.IfError(err)
 
-	defer resp.Body.Close()
+	if !check.IfError(err) {
+		defer resp.Body.Close()
 
-	post := &Post{}
-	err = json.NewDecoder(resp.Body).Decode(post)
-	check.IfError(err)
+		post := &Post{}
+		err = json.NewDecoder(resp.Body).Decode(post)
+		check.IfError(err)
 
-	if len(post.Alt) > 0 {
-		return post.Result + " " + strings.Join(post.Alt, " ")
+		returnString = post.Result
+
+		if len(post.Alt) > 0 {
+			returnString = returnString + " " + strings.Join(post.Alt, " ")
+		}
 	}
 
-	return post.Result
+	return returnString
 }

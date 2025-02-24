@@ -1,13 +1,31 @@
 version: "3"
 services:
+  node-bootstrap:       # optional, local themes and icons
+    image: aceberg/node-bootstrap
+    restart: unless-stopped
+    ports:
+    - 8850:8850
+  ltr:                  # LibreTranslate API
+    image: libretranslate/libretranslate
+    restart: unless-stopped
+    ports:
+    - 5000:5000
+  # WARNNING! LibreTranslate needs A LOT of time to download everything the container needs, so check if it is up, before using BookTr. Check http://YOUR-ADDRESS:5000
   booktr:
     image: aceberg/booktr   
     restart: unless-stopped
+    ports:
+    - 8856:8856
     volumes:
     - ~/.dockerdata/BookTr:/data/BookTr
+    command: "-n http://YOUR-ADDRESS:8850"
     environment:
       TZ: Asia/Novosibirsk    # required, default: ""
       HOST: "0.0.0.0"         # optional, default: 0.0.0.0
-      PORT: "8830"            # optional, default: 8830
-      THEME: "simplex"        # optional, default: simplex
-      COLOR: "dark"           # optional, default: dark
+      PORT: "8856"            # optional, default: 8856
+      THEME: "ocean"          # optional, default: ocean
+      COLOR: "light"          # optional, default: light
+      LANGFROM: "fr"          # optional, default: fr
+      LANGTO: "en"            # optional, default: en
+      LTRPATH: "http://YOUR-ADDRESS:5000" # optional, default: "". Though it is required for this app to work, you can add it later through GUI config.
+      LTRKEY: ""              # optional, default: "" 

@@ -2,10 +2,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## [0.1.4] - 2025-02-
+## [0.1.4] - 2025-02-2
 ### Added
 - Top Info block
 - README
+- docker-compose.yaml
 
 ## [0.1.3] - 2025-02-24
 ### Changed
