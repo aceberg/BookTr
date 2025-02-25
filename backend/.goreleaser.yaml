@@ -29,7 +29,7 @@ builds:
 
 nfpms:
   - maintainer: aceberg <aceberg_a@proton.me>
-    description: Translate long texts side by side
+    description: Translate texts side-by-side using LibreTranslate API
     homepage: https://github.com/aceberg/BookTr
     license: MIT
     section: utils
