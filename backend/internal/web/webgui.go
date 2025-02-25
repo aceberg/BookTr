@@ -37,7 +37,7 @@ func Gui(dirPath, nodePath string) {
 	if nodePath != "" {
 		appConfig.NodePath = nodePath
 	}
-	check.Path(appConfig.DirPath + "/saved/")
+	check.Dir(appConfig.DirPath + "/saved/")
 
 	log.Println("INFO: starting web gui with config", appConfig.ConfPath)
 

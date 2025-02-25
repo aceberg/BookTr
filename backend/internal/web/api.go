@@ -25,23 +25,29 @@ func apiHandler(c *gin.Context) {
 
 func apiGetTr(c *gin.Context) {
 	var result string
-	treq := struct {
-		Text string
-		Alt  string
-	}{"", ""}
 
-	treqStr := c.PostForm("treq")
-	err := json.Unmarshal([]byte(treqStr), &treq)
-	check.IfError(err)
-
-	if treq.Text == "" {
-		result = ""
+	if appConfig.LtrPath == "" {
+		result = "LibreTranslate path is empty"
+		log.Println("ERROR:", result)
 	} else {
-		result = translate.Libre(treq.Text, appConfig, treq.Alt)
-	}
+		treq := struct {
+			Text string
+			Alt  string
+		}{"", ""}
 
-	log.Println("INFO: text:", treq.Text)
-	log.Println("INFO: result:", result)
+		treqStr := c.PostForm("treq")
+		err := json.Unmarshal([]byte(treqStr), &treq)
+		check.IfError(err)
+
+		if treq.Text == "" {
+			result = ""
+		} else {
+			result = translate.Libre(treq.Text, appConfig, treq.Alt)
+		}
+
+		log.Println("INFO: text:", treq.Text)
+		log.Println("INFO: result:", result)
+	}
 
 	c.IndentedJSON(http.StatusOK, result)
 }

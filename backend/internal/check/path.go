@@ -5,7 +5,7 @@ import (
 	"path/filepath"
 )
 
-// Path - create path if not exists
+// Path - create file path if not exists
 func Path(path string) bool {
 
 	_, err := os.Stat(path)
@@ -26,28 +26,18 @@ func Path(path string) bool {
 	return true
 }
 
-// Exists - check is file exists
-func Exists(path string) bool {
+// Dir - create dir path if not exists
+func Dir(path string) bool {
 
 	_, err := os.Stat(path)
 
 	if path != "" && err != nil {
 
+		err = os.MkdirAll(path, os.ModePerm)
+		IfError(err)
+
 		return false
 	}
 
 	return true
-}
-
-// IsYaml - check if file got .yaml or .yml extension
-func IsYaml(path string) bool {
-
-	if Exists(path) {
-		ext := filepath.Ext(path)
-		if ext == ".yaml" || ext == ".yml" {
-			return true
-		}
-	}
-
-	return false
 }
