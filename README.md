@@ -45,7 +45,7 @@ docker run --name BookTr \
     -e "LTRPATH=http://$YOURADDRESS:5000" \  # LibreTranslate URL
     -v ~/.dockerdata/BookTr:/data/BookTr  \ 
     -p 8856:8856 \
-  aceberg/BookTr
+  ghcr.io/aceberg/booktr # or aceberg/booktr
 ``` 
 Or use [docker-compose.yml](./docker-compose.yml) 
 

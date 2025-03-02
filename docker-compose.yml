@@ -1,7 +1,8 @@
 version: "3"
 services:
   node-bootstrap:       # optional, local themes and icons
-    image: aceberg/node-bootstrap
+    image: aceberg/node-bootstrap           # dockerhub
+    # image: ghcr.io/aceberg/node-bootstrap # or github
     restart: unless-stopped
     ports:
     - 8850:8850
@@ -12,7 +13,8 @@ services:
     - 5000:5000
   # WARNING! LibreTranslate needs A LOT of time to download everything the container needs, so check if it is up, before using BookTr. Check http://YOUR-ADDRESS:5000
   booktr:
-    image: aceberg/booktr
+    image: aceberg/booktr             # dockerhub
+    # image: ghcr.io/aceberg/booktr   # or github
     restart: unless-stopped
     ports:
     - 8856:8856
